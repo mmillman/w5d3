@@ -1,0 +1,35 @@
+<h1>Create Newspaper</h1>
+
+<%= flash.now[:error] %>
+
+<%= form_for(@newspaper) do |f| %>
+
+  <%= f.label "Title:" %>
+  <%= f.text_field :title %>
+
+  <br>
+
+  <%= f.label "Editor:" %>
+  <%= f.text_field :editor %>
+
+  <br>
+
+  <%= f.fields_for(:subscription_plans) do |sf| %>
+    <%= sf.label "Publication Frequency:" %>
+    <%=
+      sf.select(
+        :daily,
+        [["Weekly", false], ["Daily", true]]
+      )
+    %>
+
+    <%= sf.label "Price:" %>
+    <%= sf.text_field :price %>
+
+    <br>
+
+  <% end %>
+
+  <%= f.submit "Create newspaper" %>
+
+<% end %>
