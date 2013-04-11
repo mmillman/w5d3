@@ -4,11 +4,11 @@
 <% @newspapers.each do |newspaper| %>
   <hr>
   <h2><%= newspaper.title %></h2>
-  <h3>Available subscriptions:</h3>
+  <h3>Available subscription plans:</h3>
   <% newspaper.subscription_plans.each do |subscription_plan| %>
     <p>
       Frequency:
-        <%= subscription_plan.daily? ? "Daily" : "Weekly" %>
+        <%= subscription_plan.frequency_type %>
       <br>
       Price: <%= subscription_plan.price %>
     </p>

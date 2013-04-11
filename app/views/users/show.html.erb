@@ -1,0 +1,13 @@
+<h1>User page for <%= @user.name %></h1>
+
+Email: <%= @user.email %>
+
+<br>
+
+<h2>Subscriptions</h2>
+
+<% @user.subscription_plans.each do |subscription_plan| %>
+<% sp_newspaper = subscription_plan.newspaper %>
+<%= sp_newspaper.title %>: <%= subscription_plan.frequency_type %> @ <%= subscription_plan.price %>
+<br>
+<% end %>

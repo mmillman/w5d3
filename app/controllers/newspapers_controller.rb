@@ -9,7 +9,7 @@ class NewspapersController < ApplicationController
   end
 
   def create
-    @newspaper = Newspaper.new(params[:newspaper]) params[:newspaper][:subscription_plans_attributes]
+    @newspaper = Newspaper.new(params[:newspaper])
 
     if @newspaper.save
       redirect_to @newspaper

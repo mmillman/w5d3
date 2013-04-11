@@ -1,0 +1,47 @@
+<h1>New User Sign up</h1>
+
+<%= form_for(@user) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <br>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <br>
+
+  <% Newspaper.all.each do |newspaper| %>
+    <h2><%= newspaper.title %></h2>
+    <% newspaper.subscription_plans.each do |subscription_plan| %>
+      <%=
+        check_box_tag(
+          "user[subscription_plan_ids][]",
+          subscription_plan.id,
+          @user.subscription_plans.include?(subscription_plan.id),
+          :id => "user_subscription_plan_ids_#{subscription_plan.id}"
+        )
+      %>
+
+      <%= label_tag "user_subscription_plan_ids_#{subscription_plan.id}",
+      "#{subscription_plan.frequency_type} @ $#{subscription_plan.price}"
+      %>
+      <br>
+    <% end %>
+
+    <!-- CHECK HOW THIS WORKS IF THERE IS NO HIDDEN FIELD -->
+    <%# f.hidden_field :subscription_plan_ids %>
+    <% hidden_field_tag "user[subscription_plan_ids][]" %>
+  <% end %>
+
+  <br>
+
+  <%= f.submit "Create user" %>
+
+<% end %>

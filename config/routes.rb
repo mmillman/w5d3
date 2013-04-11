@@ -21,6 +21,10 @@ NewspaperApp::Application.routes.draw do
 
   resource :subscription, only: [:create], to: 'subscription_plans#create'
 
+  resources :users, only: [:create, :new, :index, :show]
+
+  resource :session, only: [:create, :new, :destroy]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
